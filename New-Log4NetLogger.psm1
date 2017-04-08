@@ -3,23 +3,30 @@ Function New-Log4NetLogger {
   [CmdletBinding()]
   param(
     # will use dll that is packaged with this module by default unless otherwise specified
-    [string]$DllPath="$($PSScriptRoot)\log4net.dll",
-    [Parameter(Mandatory=$True)]
-    [string]$XmlConfigPath,
-    [string]$loggerName="root"
+    [Parameter(ParameterSetName='Reset',Mandatory=$False)][switch]$Reset,
+    [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$DllPath="$($PSScriptRoot)\log4net.dll",
+    [Parameter(ParameterSetName='Load',Mandatory=$True)][string]$XmlConfigPath,
+    [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$loggerName="root"
   )
+  if ($Reset) {
+    if (!([System.Management.Automation.PSTypeName]'log4net.LogManager').Type) {
+      throw "log4net.LogManager class is not loaded"
+    }
+    [log4net.LogManager]::ResetConfiguration();
+    return;
+  }
   # validate $DllPath and $XmlConfigPath exist and get absolute paths, if err then we throw
   Try {
     Write-Verbose "Getting Absolute path for [$($DllPath)]..."
-    $absoluteDllPath = Resolve-Path -Path $DllPath
+    $absoluteDllPath = (Resolve-Path -Path $DllPath).Path
     Write-Verbose "Getting Absolute path for [$($XmlConfigPath)]..."
-    $absoluteXmlPath = Resolve-Path -Path $XmlConfigPath
+    $absoluteXmlPath = (Resolve-Path -Path $XmlConfigPath).Path
   }
   Catch {
-    # if any of the above fails it will be caught here and we can throw to bail out
     throw $_
   }
-  # load log4net dll and reset config, if err we throw
+
+  # load log4net dll / reset config / load xml config
   Try {
     Write-Verbose "Attempting to load log4net dll from path : [$($XmlConfigPath)]..."
     [void][Reflection.Assembly]::LoadFile($absoluteDllPath)
@@ -31,13 +38,10 @@ Function New-Log4NetLogger {
   Catch {
     throw $_
   }
-  # load the xml config file 
-
-  # create logger object
-  Write-Verbose "Creating logger object..."
+  # return new class object
   $logger = [log4net.LogManager]::GetLogger($loggerName)
-  Write-Verbose "Returning logger object..."
   return $logger
+  #return [Log4NetLogger]::new($DllPath,$XmlConfigPath,$loggerName)
 }
 
 # exports
