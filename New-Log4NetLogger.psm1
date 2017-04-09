@@ -4,7 +4,7 @@ Function New-Log4NetLogger {
   param(
     # will use dll that is packaged with this module by default unless otherwise specified
     [Parameter(ParameterSetName='Reset',Mandatory=$False)][switch]$Reset,
-    [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$DllPath="$($PSScriptRoot)\log4net.dll",
+    [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$DllPath="$($PSScriptRoot)\bin\log4net-NET4.5-v2.0.8.0.dll",
     [Parameter(ParameterSetName='Load',Mandatory=$True)][string]$XmlConfigPath,
     [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$loggerName="root"
   )
@@ -42,7 +42,6 @@ Function New-Log4NetLogger {
   # return new class object
   $logger = [log4net.LogManager]::GetLogger($loggerName)
   return $logger
-  #return [Log4NetLogger]::new($DllPath,$XmlConfigPath,$loggerName)
 }
 
 # exports
