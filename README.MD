@@ -5,6 +5,17 @@ This module will load log4net assembly into powershell and return a logger objec
 
 See full detail on the Apache project website => [https://logging.apache.org/log4net/](https://logging.apache.org/log4net/)
 
+log4net dll
+===========
+
+This module ships with the log4net dll that is compatible with .NET Framework 4.5 and is version `v2.0.8.0`.
+
+If you need to load a different version of the log4net lib then you can pass in the path to your dll using the `$DllPath` parameter to override the default assembly that ships with this module.
+
+Please note that only the Dll that ships with this module has been tested. You may want to add the `-Verbose` switch when loading the module for more detailed debugging information.
+
+If the `$DllPath` specified dll file fails to load (defaul dll or otherwise) then this module with throw.
+
 install
 =======
 
