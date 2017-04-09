@@ -45,7 +45,7 @@ There may be times when you need to clear the log4net configuration. You can do 
 New-Log4NetLogger -Reset
 ```
 
-The above will reset the log4net configuration. This will all existing appenders setup by the config file, including the removal on any file locks placed on any log files (so they can be safely deleted/moved/renamed/etc by another process).
+The above will reset the log4net configuration. This will remove all existing appenders setup by the config file, including the removal on any file locks placed on any log files (so they can be safely deleted/moved/renamed/etc by another process).
 
 example
 =======
