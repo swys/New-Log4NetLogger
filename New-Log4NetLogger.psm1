@@ -3,7 +3,7 @@ Function New-Log4NetLogger {
   [CmdletBinding()]
   param(
     # will use dll that is packaged with this module by default unless otherwise specified
-    [Parameter(ParameterSetName='Reset',Mandatory=$False)][switch]$Reset,
+    [Parameter(ParameterSetName='Reset',Mandatory=$True)][switch]$Reset,
     [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$DllPath="$($PSScriptRoot)\bin\log4net-NET4.5-v2.0.8.0.dll",
     [Parameter(ParameterSetName='Load',Mandatory=$True)][string]$XmlConfigPath,
     [Parameter(ParameterSetName='Load',Mandatory=$False)][string]$loggerName="root"
