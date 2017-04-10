@@ -16,13 +16,6 @@ Please note that only the Dll that ships with this module has been tested. You m
 
 If the `$DllPath` specified dll file fails to load (defaul dll or otherwise) then this module with throw.
 
-install
-=======
-
-```
-git clone https://github.com/swys/New-Log4NetLogger.git
-```
-
 usage
 =====
 
