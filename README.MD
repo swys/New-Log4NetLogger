@@ -16,13 +16,6 @@ Please note that only the Dll that ships with this module has been tested. You m
 
 If the `$DllPath` specified dll file fails to load (defaul dll or otherwise) then this module with throw.
 
-install
-=======
-
-```
-git clone http://kevin.carroll@stash.ignitionone.com/scm/sd/new-log4netlogger.git
-```
-
 usage
 =====
 
