@@ -10,7 +10,8 @@ Function New-Log4NetLogger {
   )
   if ($Reset) {
     if (!([System.Management.Automation.PSTypeName]'log4net.LogManager').Type) {
-      throw "log4net.LogManager class is not loaded"
+      Write-Verbose "log4net.LogManager class is not loaded...not doing anything"
+      return;
     }
     Write-Verbose "Resetting XML Configuration..."
     [log4net.LogManager]::ResetConfiguration();
