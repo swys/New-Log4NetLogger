@@ -20,7 +20,7 @@ install
 =======
 
 ```
-git clone http://kevin.carroll@stash.ignitionone.com/scm/sd/new-log4netlogger.git
+git clone https://github.com/swys/New-Log4NetLogger.git
 ```
 
 usage
